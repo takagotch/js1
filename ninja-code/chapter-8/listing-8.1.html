@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 8.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      setTimeout(function repeatMe() {                //#1
+        /* 長いコードブロック（省略）... */           //#1
+        setTimeout(repeatMe, 10);                     //#1
+      }, 10);                                         //#1
+
+      setInterval(function() {                        //#2
+        /* 長いコードブロック（省略）... */           //#2
+      }, 10);                                         //#2
+
+    </script>
+
+  </body>
+</html>

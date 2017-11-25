@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 8.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      (function() {
+
+        var queue = [], paused = false;                //#1
+
+        this.test = function(fn) {                     //#2
+          queue.push(fn);
+          runTest();
+        };
+
+        this.pause = function() {                      //#3
+          paused = true;
+        };
+
+        this.resume = function() {                     //#4
+          paused = false;
+          setTimeout(runTest, 1);
+        };
+
+        function runTest() {                           //#5
+          if (!paused && queue.length) {
+            queue.shift()();
+            if (!paused) resume();
+          }
+        }
+      })();
+
+      test(function() {
+        pause();
+        setTimeout(function() {
+          assert(true, "第1のテストが完了した");
+          resume();
+        }, 100);
+      });
+
+      test(function() {
+        pause();
+        setTimeout(function() {
+          assert(true, "第2のテストが完了した");
+          resume();
+        }, 200);
+      });
+
+    </script>
+  </body>
+</html>
+

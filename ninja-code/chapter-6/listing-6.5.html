@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 6.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Ninja(){}
+
+      var ninja = new Ninja();
+
+      assert(typeof ninja == "object",                               //#1
+            "インスタンスの型は、object。");
+      assert(ninja instanceof Ninja,                                 //#2
+             "instanceofはコンストラクタを識別する。" );
+      assert(ninja.constructor == Ninja,                             //#3
+             "このninjaオブジェクトは、Ninja関数によって作成された。");
+
+    </script>
+  </body>
+</html>

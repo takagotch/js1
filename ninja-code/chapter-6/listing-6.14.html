@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 6.14</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function MyArray() {}
+
+      MyArray.prototype = new Array();
+
+      var mine = new MyArray();
+      mine.push(1, 2, 3);
+
+      assert(mine.length == 3,
+             "全部の項目が配列のサブクラスに存在する。");
+      assert(mine instanceof Array,
+             "Arrayの機能を継承したことを確認する。");
+
+
+    </script>
+  </body>
+</html>
+

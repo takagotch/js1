@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 6.20</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="subclass.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+      var Person = Object.subClass({                           //#1
+        init: function(isDancing) {
+          this.dancing = isDancing;
+        },
+        dance: function() {
+          return this.dancing;
+        }
+      });
+
+      var Ninja = Person.subClass({                            //#2
+        init: function() {
+          this._super(false);                                  //#3
+        },
+        dance: function() {
+          // 忍者固有の振る舞いを、ここに入れる
+          return this._super();
+        },
+        swingSword: function() {
+          return true;
+        }
+      });
+
+      var person = new Person(true);                            //#4
+      assert(person.dance(),                                    //#4
+             "この人は踊っている。");                           //#4
+
+      var ninja = new Ninja();                                  //#5
+      assert(ninja.swingSword(),                                //#5
+             "刀を振るっているが、");                             //#5
+      assert(!ninja.dance(),                                    //#5
+             "この忍者は踊っていない。");                       //#5
+
+      assert(person instanceof Person,                          //#6
+             "この人はPersonである。");                         //#6
+      assert(ninja instanceof Ninja &&                          //#6
+             ninja instanceof Person,                           //#6
+             "この忍者はNinjaであり、Personである。");          //#6
+
+    </script>
+  </body>
+</html>
+

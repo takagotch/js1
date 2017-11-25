@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 13.9</title>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="fixup.js"></script>
+    <script type="text/javascript" src="events.js"></script>
+    <script type="text/javascript" src="trigger.js"></script>
+  </head>
+  <body>
+    <form action="/nowhere">
+      <button type="submit" id="testButton">テスト</button>
+    </form>
+
+    <script type="text/javascript">
+
+      var testSubject = document.getElementById('testButton');
+
+      addEvent(testSubject,'click',function(event){ alert('トリガされた！'); });
+
+      triggerEvent(testSubject,'click');
+
+    </script>
+  </body>
+</html>
+

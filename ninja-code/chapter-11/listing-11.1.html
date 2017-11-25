@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 11.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      Object.prototype.ronin = "ronin";             //#1
+
+      var object = { ninja: 'value' };              //#2
+      object.samurai = 'samurai';                   //#2
+
+      assert(object.hasOwnProperty('ronin'),
+             "roninは独自プロパティである。");
+      assert(object.hasOwnProperty('ninja'),
+             "ninjaは独自プロパティである。");
+      assert(object.hasOwnProperty('samurai'),
+             "samuraiは独自プロパティである。");
+
+    </script>
+
+  </body>
+</html>

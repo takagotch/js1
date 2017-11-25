@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.14</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var html = "<b>Hello</b>\n<i>world!</i>";                   //#1
+
+      assert(/.*/.exec(html)[0] === "<b>Hello</b>",               //#2
+             "通常のキャプチャは行末まで。");
+
+      assert(/[\S\s]*/.exec(html)[0] ===                          //#3
+             "<b>Hello</b>\n<i>world!</i>",
+             "文字集合を使って全部にマッチさせる。");
+
+      assert(/(?:.|\s)*/.exec(html)[0] ===                        //#4
+             "<b>Hello</b>\n<i>world!</i>",
+             "キャプチャなしグループを使って全部にマッチさせる。");
+
+    </script>
+  </body>
+</html>

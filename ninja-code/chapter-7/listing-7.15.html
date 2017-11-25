@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.15</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var text ="\u5FCD\u8005\u30D1\u30EF\u30FC";
+
+      var matchAll =                                   //#1
+        /[\w\u0080-\uFFFF_-]+/;                        //#1
+
+      assert((text).match(matchAll),
+             "正規表現がUnicodeにマッチした！" );
+
+    </script>
+
+  </body>
+</html>

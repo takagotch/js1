@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 6.8</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Person(){}
+      Person.prototype.dance = function(){};
+
+      function Ninja(){}
+
+      Ninja.prototype = new Person();                         //#1
+
+      var ninja = new Ninja();
+      assert(ninja instanceof Ninja,
+            "ninjaは、その機能をNinjaプロトタイプから継承している");
+      assert(ninja instanceof Person, "Personプロトタイプからも…");
+      assert(ninja instanceof Object, "Objectプロトタイプからも…");
+      assert(typeof ninja.dance == "function", "しかもninjaは踊れる！")
+
+    </script>
+  </body>
+</html>

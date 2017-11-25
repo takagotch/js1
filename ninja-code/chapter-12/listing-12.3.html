@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 12.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="testSubject"></div>
+
+    <script type="text/javascript">
+
+      (function(){                                               //#1
+
+        var translations = {                                     //#2
+          "for": "htmlFor",
+          "class": "className",
+          readonly: "readOnly",
+          maxlength: "maxLength",
+          cellspacing: "cellSpacing",
+          rowspan: "rowSpan",
+          colspan: "colSpan",
+          tabindex: "tabIndex",
+          cellpadding: "cellPadding",
+          usemap: "useMap",
+          frameborder: "frameBorder",
+          contenteditable: "contentEditable"
+        };
+
+
+
+        window.attr = function(element,name,value) {              //#3
+          var property = translations[name] || name,
+              propertyExists = typeof element[ property ] !== "undefined";
+
+          if (typeof value !== "undefined") {
+            if (propertyExists) {
+              element[property] = value;
+            }
+            else {
+              element.setAttribute(name,value);
+            }
+          }
+
+          return propertyExists ?
+            element[property] :
+            element.getAttribute(name);
+        };
+
+      })();
+
+      var subject = document.getElementById('testSubject');      //#4
+      assert(attr(subject,'id') === 'testSubject',
+             "id値をフェッチした。");
+
+      assert(attr(subject,'id','other') === 'other',
+           "新しいid値を設定した。");
+      assert(attr(subject,'id') === 'other',
+           "新しいid値をフェッチした。");
+
+      assert(attr(subject,'data-custom','whatever') ==='whatever',
+             "カスタム属性を設定した。");
+      assert(attr(subject,'data-custom') === 'whatever',
+             "カスタム属性をフェッチした。");
+
+    </script>
+  </body>
+</html>
+

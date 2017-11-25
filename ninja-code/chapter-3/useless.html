@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Useless callback example</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+      var text = 'かたじけない！';
+      function useless(callback) { return callback(); }
+      assert(useless(function(){ return text; }) === text,
+             "このuseless関数は使える！ " + text);
+    </script>
+  </body>
+</html>

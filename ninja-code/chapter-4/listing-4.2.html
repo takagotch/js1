@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 4.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function chirp(n) {                                      //#1
+        return n > 1 ? chirp(n - 1) + "-chirp" : "chirp";      //#1
+      }                                                        //#1
+
+      assert(chirp(3) == "chirp-chirp-chirp",                  //#2
+            "名前付き関数の呼び出しは予想通りに行われる。");   //#2
+
+    </script>
+  </body>
+</html>

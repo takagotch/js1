@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 6.13</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      Number.prototype.add = function(num){                             //#1
+        return this + num;
+      };
+
+      var n = 5;                                                        //#2
+      assert(n.add(3) == 8,
+            "数値が変数内にあるときは使える。");
+
+      assert((5).add(3) == 8,                                           //#3
+             "数値がカッコで包まれているときも使える。");
+
+      assert(5.add(3) == 8, "単純なリテラルだったら？");                //#4
+
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 13.12</title>
+    <script type="text/javascript" src="event-support.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      (function(){
+
+        var isSubmitEventSupported = isEventSupported("submit");
+
+        function isInForm(elem) {               //#1 渡された要素がフォーム内かをチェックする関数
+          var parent = elem.parentNode;
+          while (parent) {
+            if (parent.nodeName.toLowerCase() === "form") {
+              return true;
+            }
+            parent = parent.parentNode;
+          }
+          return false;
+        }
+
+        function triggerSubmitOnClick(e) {      //#2 対応するコントロールへのクリックでsubmitイベントをトリガするハンドラ
+          var type = e.target.type;
+          if ((type === "submit" || type === "image") &&
+              isInForm(e.target)) {
+            return triggerEvent(this,"submit");
+          }
+        }
+
+        function triggerSubmitOnKey(e) {        //#3 対応するコントロールでのキー押下でsubmitイベントをトリガするハンドラ
+          var type = e.target.type;
+          if ((type === "text" || type === "password") &&
+              isInForm(e.target) && e.keyCode === 13) {
+            return triggerEvent(this,"submit");
+          }
+        }
+
+        this.addSubmit = function (elem, fn) {  //#4 特別なバインド関数を定義する
+
+          addEvent(elem, "submit", fn);             //#5 通常のバインドを行う
+          if (isSubmitEventSupported) return;       //#5 ブラウザのサポートが適切ならば終了
+
+　　      // フォームでなければハンドラを追加する必要がある
+          // 便乗は、最初にバインドするハンドラで行う
+          if (elem.nodeName.toLowerCase() !== "form" &&               //#6 便乗を行う必要があるか？
+              getData(elem).handlers.submit.length === 1) {
+            addEvent(elem, "click", triggerSubmitOnClick);
+            addEvent(elem, "keypress", triggerSubmitOnKey);
+          }
+
+        };
+
+        this.removeSubmit = function (elem, fn) {    //#7 特別なアンバインド関数を定義する
+
+          removeEvent(elem, "submit", fn);                   //#8 通常のアンバインドを行う
+          if (isEventSupported("submit")) return;            //#8 ブラウザが適切ならば終了
+
+          var data = getData(elem);
+
+          if (elem.nodeName.toLowerCase() !== "form" &&      //#9 submitハンドラが全部消えたら便乗を解除する
+              !data || !data.events || !data.events.submit) {
+            removeEvent(elem, "click", triggerSubmitOnClick);
+            removeEvent(elem, "keypress", triggerSubmitOnKey);
+          }
+        };
+
+      })();
+
+    </script>
+  </body>
+</html>
+

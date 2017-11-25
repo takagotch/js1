@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 4.9</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function isPrime(value) {
+        if (!isPrime.anwers) isPrime.answers = {};                   //#1
+        if (isPrime.answers[value] != null) {                        //#2
+          return isPrime.answers[value];                             //#2
+        }                                                            //#2
+        var prime = value != 1; // 1は決して素数にならない
+        for (var i = 2; i < value; i++) {
+          if (value % i == 0) {
+            prime = false;
+            break;
+          }
+        }
+        return isPrime.answers[value] = prime;                       //#3
+      }
+
+      assert(isPrime(5), "5は素数！" );                              //#4
+      assert(isPrime.answers[5], "答えはキャッシュされた！" );       //#4
+
+    </script>
+  </body>
+</html>

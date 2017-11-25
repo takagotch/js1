@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.12</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function trim(str) {
+        return str.replace(/^\s\s*/, '')           //#1
+                   .replace(/\s\s*$/, '');         //#1
+      }
+
+      assert(trim(" #id div.class ") == "#id div.class",
+             "セレクタ文字列の余分な空白をトリミングした。");
+
+    </script>
+  </body>
+</html>
+

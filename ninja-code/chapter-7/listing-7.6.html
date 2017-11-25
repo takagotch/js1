@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.6</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var html = "<div class='test'><b>Hello</b> <i>world!</i></div>";
+      var pattern = /<(\/?)(\w+)([^>]*?)>/g, match;
+      var num = 0;
+
+      while ((match = pattern.exec(html)) !== null) {                  //#1
+        assert(match.length == 4,
+              "毎回のマッチで、タグと3個のキャプチャを見つける。");
+        num++;
+      }
+
+      assert(num == 6, "3個の開始タグと3個の終了タグが見つかった。");
+
+    </script>
+  </body>
+</html>

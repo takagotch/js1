@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 4.7</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      var ninja = {
+        chirp: function(n) {                              //#1
+          return n > 1 ? arguments.callee(n - 1) + "-chirp" : "chirp";
+        }
+      };
+
+      assert(ninja.chirp(3) == "chirp-chirp-chirp",      //#2
+             "arguments.calleeは、その関数自身である。");
+
+    </script>
+  </body>
+</html>

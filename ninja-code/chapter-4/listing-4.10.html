@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 4.10</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  <head>
+
+  <body>
+
+    <input id="first"/>
+    <input id="second"/>
+
+    <script type="text/javascript">
+
+      var elems = {
+
+        length: 0,                                                //#1
+
+        add: function(elem){                                      //#2
+          Array.prototype.push.call(this, elem);
+        },
+
+        gather: function(id){                                     //#3
+          this.add(document.getElementById(id));
+        }
+      };
+
+      elems.gather("first");                                      //#4
+      assert(elems.length == 1 && elems[0].nodeType,              //#4
+             "要素の獲得を確認");                                 //#4
+
+      elems.gather("second");                                     //#4
+      assert(elems.length == 2 && elems[1].nodeType,              //#4
+             "もうひとつ挿入を確認");                             //#4
+
+    </script>
+  </body>
+</html>

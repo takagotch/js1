@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Palindrome</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function isPalindrome(text) {
+        if (text.length <= 1) return true;
+        if (text.charAt(0) != text.charAt(text.length - 1)) return false;
+        return isPalindrome(text.substr(1,text.length -2));
+      }
+
+      assert(isPalindrome(""),"空")
+      assert(isPalindrome("x"),"1文字")
+      assert(isPalindrome("oxo"),"奇数")
+      assert(isPalindrome("abba"),"偶数")
+      assert(isPalindrome("abbar"),"回文ではない")
+
+    </script>
+  </body>
+</html>
+

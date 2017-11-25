@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.14</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="fixup.js"></script>
+    <script type="text/javascript" src="events.js"></script>
+    <script type="text/javascript" src="trigger.js"></script>
+    <style>.over { background: yellow; }</style>
+    <script>
+      (function() {
+
+        if (isEventSupported("mouseenter")) {            //#A ブラウザがmouseenterとmouseleaveをサポートしているなら
+
+          this.hover = function (elem, fn) {                 //#B そのハンドラをトリガするハンドラを追加するだけ
+            addEvent(elem, "mouseenter", function () {
+              fn.call(elem, "mouseenter");
+            });
+
+            addEvent(elem, "mouseleave", function () {
+              fn.call(elem, "mouseleave");
+            });
+          };
+
+        }
+        else {                                           //#C サポートしないブラウザでは、要素の中にあるかを
+                                                         //#C 判定するwithinElement()ハンドラを使って
+          this.hover = function (elem, fn) {             //#C mouseoverとmousemoveを処理する
+I           addEvent(elem, "mouseover", function (e) {
+              withinElement(this, e, "mouseenter", fn);
+            });
+
+            addEvent(elem, "mouseout", function (e) {
+              withinElement(this, e, "mouseleave", fn);
+            });
+          };
+
+        }
+
+        function withinElement(elem, event, type, handle) {      //#D 非標準の振る舞いを模倣するハンドラ
+
+          var parent = event.relatedTarget;                      //#E 出入りしようとしている要素を取得
+
+          while (parent && parent != elem) {             //#F ルートまたは監視している要素までDOMを上に辿る
+            try {
+              parent = parent.parentNode;
+            }
+            catch (e) {                                          //#G エラーの場合（FirefoxではXUL要素で）
+              break;
+            }
+          }
+          if (parent != elem) {                          //#H 監視している要素の出入りならばハンドラをトリガする
+            handle.call(elem, type);
+          }
+        }
+
+      })();
+
+      window.onload = function () {
+        var div = document.getElementsByTagName("div")[0];
+
+        hover(div, function (type) {
+          if (type === "mouseenter") {
+            this.className = "over";
+          }
+          else {
+            this.className = "";
+          }
+        });
+      };
+
+      function isEventSupported(eventName) {
+        var element = document.createElement('div'),
+            isSupported;
+        eventName = 'on' + eventName;
+        isSupported = (eventName in element);
+        if (!isSupported) {
+          element.setAttribute(eventName, 'return;');
+          isSupported = typeof element[eventName] == 'function';
+        }
+        element = null;
+        return isSupported;
+      }
+
+    </script>
+  </head>
+  <body>
+
+    <div>おいらの<strong>上を</strong>飛んでみな！</div>
+
+  </body>
+</html>
+

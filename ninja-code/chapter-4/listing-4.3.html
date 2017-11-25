@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 4.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      var ninja = {
+        chirp: function(n) {
+          return n > 1 ? ninja.chirp(n - 1) + "-chirp" : "chirp";
+        }
+      };
+
+      assert(ninja.chirp(3) == "chirp-chirp-chirp",
+            "オブジェクトプロパティでも、あまり複雑ではない。");
+
+    </script>
+  </body>
+</html>

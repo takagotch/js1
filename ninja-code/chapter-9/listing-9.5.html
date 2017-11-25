@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 9.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function argumentNames(fn) {
+        var found = /^[\s\(]*function[^(]*\(\s*([^)]*?)\s*\)/   //#1
+                    .exec(fn.toString());                       //#1
+        return found && found[1] ?                              //#2
+                 found[1].split(/,\s*/) :                       //#2
+                 [];                                            //#2
+      }
+
+      assert(argumentNames(function(){}).length === 0,          //#3
+             "引数なしの関数で確認。");
+
+      assert(argumentNames(function(x){})[0] === "x",           //#4
+             "1個の引数で確認。");
+
+      var results = argumentNames(function(a,b,c,d,e){});       //#5
+      assert(results[0] == 'a' &&
+             results[1] == 'b' &&
+             results[2] == 'c' &&
+             results[3] == 'd' &&
+             results[4] == 'e',
+             "複数の引数で動作を確認！");
+
+    </script>
+  </body>
+</html>
+

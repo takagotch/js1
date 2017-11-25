@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 9.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      assert(eval("5 + 5") === 10,                               //#1
+             "5と5を足せば10");
+
+      assert(eval("var ninja = 5;") === undefined,               //#2
+             "何の値も返さない" );
+      assert(ninja === 5, "変数ninjaが作成された");　            //#3
+
+      (function(){
+        eval("var ninja = 6;");                                  //#4
+        assert(ninja === 6,                                      //#4
+              "現在のスコープ内で評価された");                   //#4
+      })();
+
+      assert(window.ninja === 5,                                 //#5
+            "グローバルスコープへの影響なし");                   //#5
+      assert(ninja === 5,                                        //#5
+            "グローバルスコープへの影響なし");                   //#5
+
+    </script>
+  </body>
+</html>

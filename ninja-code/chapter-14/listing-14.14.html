@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.14</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="test"><b>Hello</b>, I'm a ninja!</div>
+
+    <script>
+      window.onload = function () {
+        function getText(elem) {
+          var text = "";
+
+          for (var i = 0; i < elem.childNodes.length; i++) {
+            var cur = elem.childNodes[i];
+
+            // textノードならば nodeType === 3
+            if (cur.nodeType === 3)
+              text += cur.nodeValue;
+
+            // 要素ノードならば、さらに再帰する必要がある
+            else if (cur.nodeType === 1)
+              text += getText(cur);
+          }
+
+          return text;
+        }
+
+        var b = document.getElementById("test");
+        var text = getText(b);
+
+        assert(text === "Hello, I'm a ninja!",
+            "要素のテキスト内容を確認した。");
+        assert(b.childNodes.length === 2,
+            "1個の要素と1個のテキストノードが存在する。");
+      };
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div class="samurai ninja"></div>                          <!--#1-->
+    <div class="ninja samurai"></div>                          <!--#1-->
+    <div></div>                                                <!--#1-->
+    <span class="samurai ninja ronin"></span>                  <!--#1-->
+
+    <script>
+      function findClassInElements(className, type) {
+
+        var elems =                                            //#2
+          document.getElementsByTagName(type || "*");
+
+        var regex =                                            //#3
+          new RegExp("(^|\\s)" + className + "(\\s|$)");
+
+        var results = [];                                      //#4
+
+        for (var i = 0, length = elems.length; i < length; i++)
+          if (regex.test(elems[i].className)) {                //#5
+            results.push(elems[i]);
+          }
+        return results;
+      }
+
+      assert(findClassInElements("ninja", "div").length == 2,
+             "正しい数のdiv忍者を見つけた。");
+      assert(findClassInElements("ninja", "span").length == 1,
+             "正しい数のspan忍者を見つけた。");
+      assert(findClassInElements("ninja").length == 3,
+             "正しい数の忍者を見つけた。");
+    </script>
+
+  </body>
+</html>
+

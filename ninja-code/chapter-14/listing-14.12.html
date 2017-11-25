@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.12</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="test"><b>Hello</b>, I'm a ninja!</div>
+
+    <script type="text/javascript">
+
+      window.onload = function () {
+        var b = document.getElementById("test");
+        var text = b.textContent || b.innerText;
+
+        assert(text === "Hello, I'm a ninja!",
+            "要素のテキスト内容を確認した。");
+        assert(b.childNodes.length === 2,
+            "1個の要素と1個のテキストノードが存在する。");
+
+        if (typeof b.textContent !== "undefined") {
+          b.textContent = "Some new text";
+        }
+        else {
+          b.innerText = "Some new text";
+        }
+
+        text = b.textContent || b.innerText;
+
+        assert(text === "Some new text", "新しいテキスト値を設定した。");
+        assert(b.childNodes.length === 1,
+            "いま存在するのはテキストノード1個だけ。");
+      };
+
+    </script>
+  </body>
+</html>

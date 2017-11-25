@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 6.19</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function User(first, last) {
+        if (!(this instanceof arguments.callee)) {             //#1
+          return new User(first,last);                         //#1
+        }                                                      //#1
+        this.name = first + " " + last;
+      }
+
+      var name = "Rukia";
+
+      var user = User("Ichigo", "Kurosaki");                    //#2
+
+      assert(name == "Rukia","nameにRukiaが設定されている。");  //#3
+      assert(user instanceof User, "Userが実体化された。");     //#3
+      assert(user.name == "Ichigo Kurosaki",                    //#3
+             "ユーザー名が正しく代入された。");                 //#3
+
+    </script>
+  </body>
+</html>
+

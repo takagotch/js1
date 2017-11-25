@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      assert(true,"|----- OUTERの前 -----|");          //#1
+      assert(typeof outer==='function',
+            "outer()はスコープ内にある");
+      assert(typeof inner==='function',
+            "inner()はスコープ内にある");
+      assert(typeof a==='number',
+            "aはスコープ内にある");
+      assert(typeof b==='number',
+            "bはスコープ内にある");
+      assert(typeof c==='number',
+            "cはスコープ内にある");
+
+      function outer(){
+
+      assert(true,"|----- OUTERの中, aの前 -----|");  //#2
+      assert(typeof outer==='function',
+            "outer()はスコープ内にある");
+      assert(typeof inner==='function',
+            "inner()はスコープ内にある");
+      assert(typeof a==='number',
+            "aはスコープ内にある");
+      assert(typeof b==='number',
+            "bはスコープ内にある");
+      assert(typeof c==='number',
+            "cはスコープ内にある");
+
+        var a = 1;
+
+        assert(true,"|----- OUTERの中, aの後 -----|");  //#3
+        assert(typeof outer==='function',
+              "outer()はスコープ内にある");
+        assert(typeof inner==='function',
+              "inner()はスコープ内にある");
+        assert(typeof a==='number',
+              "aはスコープ内にある");
+        assert(typeof b==='number',
+              "bはスコープ内にある");
+        assert(typeof c==='number',
+              "cはスコープ内にある");
+
+        function inner(){ /* 何もしない */ }
+
+        var b = 2;
+
+        assert(true,"|----- OUTERの中, inner()とbの後 -----|"); //#4
+        assert(typeof outer==='function',
+              "outer()はスコープ内にある");
+        assert(typeof inner==='function',
+              "inner()はスコープ内にある");
+        assert(typeof a==='number',
+              "aはスコープ内にある");
+        assert(typeof b==='number',
+              "bはスコープ内にある");
+        assert(typeof c==='number',
+              "cはスコープ内にある");
+
+        if (a == 1) {
+          var c = 3;
+          assert(true,"|----- OUTERの中, ifの内側 -----|"); //#5
+          assert(typeof outer==='function',
+                "outer()はスコープ内にある");
+          assert(typeof inner==='function',
+                "inner()はスコープ内にある");
+          assert(typeof a==='number',
+                "aはスコープ内にある");
+          assert(typeof b==='number',
+                "bはスコープ内にある");
+          assert(typeof c==='number',
+                "cはスコープ内にある");
+        }
+
+        assert(true,"|----- OUTERの中, cの後 -----|"); //#6
+        assert(typeof outer==='function',
+              "outer()はスコープ内にある");
+        assert(typeof inner==='function',
+              "inner()はスコープ内にある");
+        assert(typeof a==='number',
+              "aはスコープ内にある");
+        assert(typeof b==='number',
+              "bはスコープ内にある");
+        assert(typeof c==='number',
+              "cはスコープ内にある");
+
+      }
+
+      outer();
+
+      assert(true,"|----- OUTERの後 -----|"); //#7
+      assert(typeof outer==='function',
+             "outer()はスコープ内にある");
+      assert(typeof inner==='function',
+             "inner()はスコープ内にある");
+      assert(typeof a==='number',
+             "aはスコープ内にある");
+      assert(typeof b==='number',
+             "bはスコープ内にある");
+      assert(typeof c==='number',
+             "cはスコープ内にある");
+
+    </script>
+  </body>
+</html>

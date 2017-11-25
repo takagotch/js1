@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 4.6</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      var ninja = function myNinja(){                                  //#1
+        assert(ninja == myNinja,                                       //#2
+               "この関数は同時に2つの名前を持つ！");                         //
+      };
+
+      ninja();                                                         //#3
+
+      assert(typeof myNinja == "undefined",                            //#4
+             "ただし、myNinjaは関数の外側では定義されない。");         //
+
+    </script>
+  </body>
+</html>

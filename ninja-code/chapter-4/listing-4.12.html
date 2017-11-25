@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 4.12</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function merge(root){                                   //#1
+        for (var i = 1; i < arguments.length; i++) {
+          for (var key in arguments[i]) {
+            root[key] = arguments[i][key];
+          }
+        }
+        return root;
+      }
+
+      var merged = merge(                                     //#2
+        {name: "Batou"},                                      //#2
+        {city: "Niihama"});                                   //#2
+
+      assert(merged.name == "Batou",                          //#3
+             "元のnameと同じ値。");                           //#3
+      assert(merged.city == "Niihama",                        //#3
+             "cityもコピーされている。");                     //#3
+
+    </script>
+  </body>
+</html>

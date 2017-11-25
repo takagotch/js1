@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.7</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var html = "<b class='hello'>Hello</b> <i>world!</i>";
+
+      var pattern = /<(\w+)([^>]*)>(.*?)<\/\1>/g;              //#1
+
+      var match = pattern.exec(html);
+      console.log(match);
+
+      assert(match[0] == "<b class='hello'>Hello</b>",
+             "タグ全体（開始から終了まで）。");
+      assert(match[1] == "b", "タグ名。");
+      assert(match[2] == " class='hello'", "タグの属性。");
+      assert(match[3] == "Hello", "タグのコンテンツ。");
+
+      match = pattern.exec(html);
+
+      console.log(match);
+
+      assert(match[0] == "<i>world!</i>",
+             "タグ全体（開始から終了まで）。");
+      assert(match[1] == "i", "タグ名。");
+      assert(match[2] == "", "タグの属性。");
+      assert(match[3] == "world!", "タグのコンテンツ。");
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.8</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var pattern = /((?:ninja-)+)sword/;                     //1
+
+      var ninjas = "ninja-ninja-sword".match(pattern);
+
+      assert(ninjas.length == 2,"キャプチャは1個だけ返された。");
+      assert(ninjas[1] == "ninja-ninja-",
+             "両方の単語にマッチ。余分なキャプチャはない。");
+
+    </script>
+  </body>
+</html>

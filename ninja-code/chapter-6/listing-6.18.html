@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 6.18</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Test() {
+        return this instanceof arguments.callee;
+      }
+
+      assert(!Test(), "実体化していないから、falseが返される。");
+      assert(new Test(), "実体化したので、trueが返される。");
+
+    </script>
+  </body>
+</html>
+

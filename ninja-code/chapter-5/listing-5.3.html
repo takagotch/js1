@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 5.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var outerValue = 'ninja';
+      var later;
+
+      function outerFunction() {
+        var innerValue = 'samurai';
+
+        function innerFunction(paramValue) {                       //#1
+          assert(outerValue,"内側からninjaが見える。");
+          assert(innerValue,"内側からsamuraiが見える。");
+          assert(paramValue,"内側からwakizashiが見える。");        //#2
+          assert(tooLate,"内側からroninが見える。");               //#2
+        }
+
+        later = innerFunction;
+      }
+
+      assert(!tooLate,"外側からroninが見えない。");                //#3
+
+      var tooLate = 'ronin';                                       //#4
+
+      outerFunction();
+      later('wakizashi');                                          //#5
+
+    </script>
+  </body>
+</html>

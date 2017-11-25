@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 5.17</title>
+    <style>
+      div { cursor: pointer;}
+    </style>
+  </head>
+  <body>
+
+    <div>DIV 0</div>
+    <div>DIV 1</div>
+
+    <script>
+      var divs = document.getElementsByTagName("div");  //#1
+
+      for (var i = 0; i < divs.length; i++) {
+        divs[i].addEventListener("click", function() {
+          alert("DIVの" + i + "番がクリックされました。");        //#2
+        }, false);
+      }
+    </script>
+  </body>
+</html>
+

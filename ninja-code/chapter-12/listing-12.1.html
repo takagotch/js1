@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 12.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script type="text/javascript">
+
+      window.onload = function(){
+
+        var div = document.getElementsByTagName("div")[0];   //#1
+
+        div.setAttribute("id","ninja-1");                    //#2
+        assert(div.getAttribute('id') === "ninja-1",
+               "属性を変更できた。");
+
+        div.id = "ninja-2";                                  //#3
+        assert(div.id === "ninja-2",
+               "プロパティを変更できた。");
+
+        div.id = "ninja-3";                                  //#4
+        assert(div.id === "ninja-3",
+               "プロパティを変更できた。");
+        assert(div.getAttribute('id') === "ninja-3",
+               "プロパティ経由で属性を変更できた。");
+
+        div.setAttribute("id","ninja-4");                    //#5
+        assert(div.id === "ninja-4",
+               "属性経由でプロパティを変更できた。");
+        assert(div.getAttribute('id') === "ninja-4",
+               "属性を変更できた。");
+
+      };
+
+    </script>
+  </body>
+</html>
+

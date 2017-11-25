@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function isNimble(){ return true; }                            //#1
+
+      assert(typeof window.isNimble === "function",                  //#2
+            "isNimble()は定義されている");
+      assert(isNimble.name === "isNimble",
+            "isNimble()には名前がある");
+
+
+      var canFly = function(){ return true; };                       //#3
+
+      assert(typeof window.canFly === "function",                    //#4
+             "canFly()は定義されている");
+      assert(canFly.name === "",
+             "canFly()には名前がない");
+
+
+      window.isDeadly = function(){ return true; };                  //#5
+
+      assert(typeof window.isDeadly === "function",                  //#6
+             "isDeadly()は定義されている");
+
+      function outer(){                                              //#7
+        assert(typeof inner === "function",
+               "inner()は宣言の前にスコープに入っている");
+        function inner(){}
+        assert(typeof inner === "function",
+              "inner()は宣言の後にスコープに入っている");
+        assert(window.inner === undefined,
+               "inner()はグローバルスコープに入っていない");
+      }
+
+      outer();                                                       //#8
+      assert(window.inner === undefined,
+             "inner()は、まだグローバルスコープに入っていない");
+
+      window.wieldsSword = function swingsSword() { return true; };  //#9
+
+      assert(window.wieldsSword.name === 'swingsSword',
+             "wieldSwordの本当の名前はswingsSword");
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var re1 = /test/i;                           //#1
+
+      var re2 = new RegExp("test", "i");           //#2
+
+      assert(re1.toString() == "/test/i",
+             "式の内容を確認。");
+      assert(re1.test("TesT"), "大文字と小文字を区別しない。");
+      assert(re2.test("TesT"), "こちらも同じ。");
+      assert(re1.toString() == re2.toString(),
+            "2つの正規表現は等しい。");
+      assert( re1 != re2, "両者は別のオブジェクトである。");
+    </script>
+  </body>
+</html>

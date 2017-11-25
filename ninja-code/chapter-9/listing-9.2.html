@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 9.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var ninja = eval("({name:'Ninja'})");             //#1
+      assert(ninja != undefined,"ninjaが作成され、");
+      assert(ninja.name === "Ninja",
+             "期待したプロパティを持っている。");
+
+      var fn = eval("(function(){return 'Ninja';})");   //#2
+      assert(typeof fn === 'function',
+             "関数が作成され、");
+      assert(fn() === "Ninja",
+             "期待した値を返す。" );
+
+      var ninja2 = eval("{name:'Ninja'}");               //#3
+      assert(ninja2 != undefined,"ninja2が作成され、");
+      assert(ninja2.name === "Ninja",
+          "期待したプロパティを持っている。");
+    </script>
+  </body>
+</html>

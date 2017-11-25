@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 7.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var html = "<div class='test'><b>Hello</b> <i>world!</i></div>";
+
+      var results = html.match(/<(\/?)(\w+)([^>]*?)>/);          //#1
+
+      assert(results[0] == "<div class='test'>", "マッチ全体。");
+      assert(results[1] == "", "（欠けている）スラッシュ。");
+      assert(results[2] == "div", "タグ名。");
+      assert(results[3] == " class='test'", "属性。");
+
+      var all = html.match(/<(\/?)(\w+)([^>]*?)>/g);              //#2
+
+      assert(all[0] == "<div class='test'>", "divの開始タグ。");
+      assert(all[1] == "<b>", "bの開始タグ。");
+      assert(all[2] == "</b>", "bの終了タグ。");
+      assert(all[3] == "<i>", "iの開始タグ。");
+      assert(all[4] == "</i>", "iの終了タグ。");
+      assert(all[5] == "</div>", "divの終了タグ。");
+
+    </script>
+
+  </body>
+</html>

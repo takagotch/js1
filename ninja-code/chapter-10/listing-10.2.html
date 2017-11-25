@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 10.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var katana = {                                            //#1
+        isSharp: true,
+        use: function(){
+          this.isSharp = !this.isSharp;
+        }
+      };
+
+      with (katana) {
+        isSharp = false;                                        //#2
+
+        assert(katana.isSharp === false,                        //#3
+            "プロパティに代入できる。");
+
+        cut = function(){                                       //#4
+          isSharp = false;
+        };
+
+        assert(typeof katana.cut == "function",                 //#5
+            "スコープのオブジェクトに新しいプロパティを作成できる。");
+        assert(typeof window.cut == "function",                 //#5
+            "新しいプロパティはグローバルスコープに作成されている。");
+
+      }
+
+    </script>
+  </body>
+</html>
+
